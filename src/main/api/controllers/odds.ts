@@ -25,8 +25,11 @@ exports.odds = async (req: Request, res:Response) => {
             console.error("Promise error: ", errors)
         })
 
-        if (horses !== null) {
+        if (horses !== undefined) {
             console.log(horses);
+        }
+        else {
+            res.status(404).send("No race data found");
         }
 
         res.send(horses);
