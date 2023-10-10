@@ -14,7 +14,7 @@ router.post('/odds', verifyToken, async function (req: Request, res: Response) {
             });
     }
     //@ts-ignore
-    if (req.user.role == "admin") {
+    if (req.user.userType == "premium") {
         const {eventUrl} = req.body;
 
         if (!eventUrl) {

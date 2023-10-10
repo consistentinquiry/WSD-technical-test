@@ -20,10 +20,10 @@ var userSchema = new Schema({
         }
 
     },
-    role: {
+    userType: {
         type: String,
-        enum: ["normal", "admin"],
-        required: [true, "Please specify user role"]
+        enum: ["free", "premium"],
+        required: [true, "Please specify a user type"]
     },
     password: {
         type: String,

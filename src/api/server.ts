@@ -1,9 +1,8 @@
 import bodyParser from 'body-parser';
-
+//TODO sort out imports import or require?
 const userRoutes = require("./routes/user");
 const raceRoute = require("./routes/raceOdds");
 require('dotenv').config()
-
 
 
 var express = require('express');
@@ -14,9 +13,6 @@ app.use(bodyParser.urlencoded())
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(userRoutes);
 app.use(raceRoute);
-
-
-
 
 var server = app.listen(8081, function () {
     var host = server.address().address

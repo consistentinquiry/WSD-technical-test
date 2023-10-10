@@ -10,7 +10,7 @@ exports.signup = async (req: Request, res: Response) => {
         const user = new User({
             fullName: req.body.fullName,
             email: req.body.email,
-            role: req.body.role,
+            userType: req.body.userType,
             password: bcrypt.hashSync(req.body.password, 8)
         });
 
@@ -29,21 +29,26 @@ exports.signup = async (req: Request, res: Response) => {
                 message: "Email address is already in use."
             });
         }
-
+        if (req.body.fullName == null ||
+            req.body.email == null ||
+            req.body.userType == null ||
+            req.body.password == null) {
+            return res.status(400).send({
+                message: "The user entity was invalid"
+            });
+        }
         res.status(500).send({
-            message: "Internal server error"
+                message: "Internal server error"
         });
     }
 };
 
-
-
 exports.signin = async (req: Request, res: Response) => {
     try {
-        const user = await User.findOne({ email: req.body.email }).exec();
+        const user = await User.findOne({email: req.body.email}).exec();
 
         if (!user) {
-            return res.status(404).send({ message: "User Not found." });
+            return res.status(404).send({message: "User Not found."});
         }
 
         const passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
@@ -55,7 +60,7 @@ exports.signin = async (req: Request, res: Response) => {
             });
         }
 
-        const token = jwt.sign({ id: user.id }, process.env.API_SECRET, {
+        const token = jwt.sign({id: user.id}, process.env.API_SECRET, {
             expiresIn: 86400
         });
 
@@ -64,12 +69,13 @@ exports.signin = async (req: Request, res: Response) => {
                 id: user.id,
                 email: user.email,
                 fullName: user.fullName,
+                userType: user.userType
             },
             message: "Login successful",
             accessToken: token,
         });
     } catch (err) {
         console.error("Login error, secret is: ", process.env.API_SECRET)
-        res.status(500).send({ message: err.message });
+        res.status(500).send({message: err.message});
     }
 };
