@@ -7,7 +7,8 @@ var express = require("express"),
         signin
     } = require("../controllers/authentication");
 
-router.post("/register", signup, function (req: Request, res: Response) {
+
+router.post("/register", signup, function (req: Request, res: Response) { //TODO can I delete the params?
 
 });
 

@@ -5,8 +5,8 @@ const raceRoute = require("./routes/odds");
 require('dotenv').config()
 
 //TODO refactor to consts
-var express = require('express');
-var app = express();
+const express = require('express');
+const app = express();
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded())
@@ -14,8 +14,8 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(userRoutes);
 app.use(raceRoute);
 
-var server = app.listen(8081, function () {
-    var host = server.address().address
-    var port = server.address().port
+const server = app.listen(8081, function () {
+    const host = server.address().address;
+    const port = server.address().port;
     console.log("Bet scraper app listening at http://%s:%s", host, port)
-})
+});

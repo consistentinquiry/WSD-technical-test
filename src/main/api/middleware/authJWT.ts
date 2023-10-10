@@ -36,4 +36,4 @@ const verifyToken = async (req: Request, res: Response, next: any) => {
 };
 
 
-module.exports = verifyToken; //TODO should I be doing this everywhere?
+module.exports = verifyToken;

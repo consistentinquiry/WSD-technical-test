@@ -23,7 +23,7 @@ Requirements:
 5. Assuming the project has been cloned, build it with:
 ```npm run build```
 
-6. After building, the compiled code can be run with:
+6. After building, the transpiled code can be run with:
 ```npm run start```
 
 
