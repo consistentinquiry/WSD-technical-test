@@ -13,13 +13,16 @@ Requirements:
 2. Initilise the MongoDB container with the follwing, note that Linux users may need to prepend with 'sudo':
 ```docker run -d -p 27017:27017 --name=bet_db mongo:latest```
 
-3. Install the project dependencies with:
+3. Create the file .env in the root of the project that contains the following key, the value is for the token signing so could be anything secure:
+  - API_SECRET=abcdef123abcdef123
+
+4. Install the project dependencies with:
 ```npm install```
 
-4. Assuming the project has been cloned, build it with:
+5. Assuming the project has been cloned, build it with:
 ```npm run build```
 
-5. After building, the compiled code can be run with:
+6. After building, the compiled code can be run with:
 ```npm run start```
 
 
