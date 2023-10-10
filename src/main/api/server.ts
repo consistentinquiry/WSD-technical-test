@@ -1,10 +1,10 @@
 import bodyParser from 'body-parser';
 //TODO sort out imports import or require?
 const userRoutes = require("./routes/user");
-const raceRoute = require("./routes/raceOdds");
+const raceRoute = require("./routes/odds");
 require('dotenv').config()
 
-
+//TODO refactor to consts
 var express = require('express');
 var app = express();
 

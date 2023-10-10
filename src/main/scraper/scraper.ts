@@ -2,22 +2,21 @@ import {HorseType} from "../types/HorseType";//TODO change to absolute path from
 
 import puppeteer from 'puppeteer-extra';
 import StealthPlugin  from 'puppeteer-extra-plugin-stealth'
-import {Browser, Page} from "puppeteer";
 
 
 //TODO unit test the lot!
 
 
 export const scrape = async (eventUrl: string) => {
-    puppeteer.use(StealthPlugin())
-    const browser = await puppeteer.launch({headless: true})
+    puppeteer.use(StealthPlugin());
+    const browser = await puppeteer.launch({headless: true});
     try {
         const page = await browser.newPage();
         page.setDefaultNavigationTimeout(2 * 60 * 1000);
 
-        await page.goto(eventUrl)
+        await page.goto(eventUrl);
 
-        await page.waitForSelector('.sportsbook-selection-racing-basic')
+        await page.waitForSelector('.sportsbook-selection-racing-basic');
 
         const horseElements = await page.$$(
             '.sportsbook-selection-racing-basic'
@@ -34,14 +33,15 @@ export const scrape = async (eventUrl: string) => {
 
             let odds: string = "Non-runner"
 
-            //TODO handle if a horse doesnt have odds (non-runner)
             try {
                 odds = await horseElement.$eval(
                     '.sportsbook-selection-racing-basic__price',
                     (element) => element.textContent.trim()
                 )
             } catch (error) {
-                //TODO probs not the best way of handling it
+                console.error("Could not find odds for horse: ",
+                    error,
+                    "\n Odds for this horse will be left as non-runner");
             }
 
             horses.push({name: horseName, odds: odds});

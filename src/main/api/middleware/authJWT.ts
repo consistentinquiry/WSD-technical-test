@@ -25,6 +25,7 @@ const verifyToken = async (req: Request, res: Response, next: any) => {
         } else {
             //@ts-ignore
             req.user = undefined;
+            return res.status(403).send({ message: "Invalid JWT token" });
         }
 
         next();

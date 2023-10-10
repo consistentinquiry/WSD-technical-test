@@ -1,11 +1,7 @@
 import {Request, Response} from "express";
 import {scrape} from "../../scraper/scraper";
 
-var express = require("express"),
-    router = express.Router(),
-    verifyToken = require('../middleware/authJWT');
-
-router.post('/odds', verifyToken, async function (req: Request, res: Response) {
+exports.odds = async (req: Request, res:Response) => {
     //@ts-ignore
     if (!req.user) {
         res.status(403)
@@ -40,9 +36,4 @@ router.post('/odds', verifyToken, async function (req: Request, res: Response) {
                 message: "Unauthorised access"
             });
     }
-
-
-
-});
-
-module.exports = router;
+}
