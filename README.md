@@ -1,4 +1,4 @@
-<h2>Node.js Developer Technical Test - WSD</h2>
+<h2>🦢 Node.js Developer Technical Test - WSD 🦢</h2>
 
 A scraper and restful API for scraping horse racing odds from Betfred. Useage of the API requires registration and authorisaiton. More on this below.
 
@@ -6,7 +6,8 @@ Requirements:
 - Node.js
 - Docker (for the database)
 
-<h1>How to run</h1>
+<h1>How to run 🏃</h1>
+
 1. Pull the latest MongoDB image:
 ```docker pull mongo:latest```
 
@@ -26,7 +27,8 @@ Requirements:
 ```npm run start```
 
 
-<h1>How to use</h1>
+<h1>How to use 🐎</h1>
+
 1. A user must first register using the '/register' endpoint. Create a POST request to this endpoint with the following key value pairs in the body as x-www-form-urlencoded:
  - fullName: A string, may contain spaces.
  - email: Must be in a valid email format.
@@ -43,7 +45,7 @@ Requirements:
   -key: Authorization
   -value: JWT [PREVIOUSLY_COPIED_KEY]
 
-  A body must be added to the request so the system knows which event to get data from. Create a body in the request also in x-www-form-url-encoded form:
+   A body must be added to the request so the system knows which event to get data from. Create a body in the request also in x-www-form-url-encoded form:
   - eventUrl: A URL of the Betfred event to scrape.
  
  If the user is premium (authorised), the event has not yet taken place and the request was successful then the API will return a JSON object containing horse names and the odds for that horse.
