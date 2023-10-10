@@ -14,7 +14,16 @@ exports.signup = async (req: Request, res: Response) => {
             password: bcrypt.hashSync(req.body.password, 8)
         });
 
+        if(req.body.userType != "premium" && req.body.userType != "free") {
+            console.error("User creation failed")
+            return res.status(400).send({
+                message: "The userRole was invalid"
+            });
+        }
+
+
         const savedUser = await user.save();
+        console.log("User created successfully");
 
         res.status(200).send({
             message: "User registered successfully",
