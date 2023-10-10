@@ -17,7 +17,7 @@ export const signup = async (req: Request, res: Response) => {
         if(req.body.userType != "premium" && req.body.userType != "free") {
             console.error("User creation failed")
             return res.status(400).send({
-                message: "The userRole was invalid"
+                message: "The userType was invalid"
             });
         }
 
