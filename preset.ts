@@ -1,5 +1,5 @@
-import ts_preset from 'ts-jest'
-import puppeteer_preset from 'jest-puppeteer'
+const ts_preset =require('ts-jest')
+const puppeteer_preset = require('jest-puppeteer')
 
 
 module.exports = Object.assign(
