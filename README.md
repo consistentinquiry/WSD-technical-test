@@ -49,3 +49,9 @@ Requirements:
   - eventUrl: A URL of the Betfred event to scrape.
  
  If the user is premium (authorised), the event has not yet taken place and the request was successful then the API will return a JSON object containing horse names and the odds for that horse.
+
+
+<h1>How to test 🧪</h1>
+
+Run the following command to run the scrape unit test:
+```npm test```
