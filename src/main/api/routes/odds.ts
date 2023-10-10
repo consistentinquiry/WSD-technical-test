@@ -1,5 +1,3 @@
-import {Request, Response} from "express";
-import {scrape} from "../../scraper/scraper";
 
 var express = require("express"),
     router = express.Router(),
@@ -8,8 +6,6 @@ var express = require("express"),
     } = require("../controllers/odds"),
     verifyToken = require('../middleware/authJWT');
 
-router.post('/odds', verifyToken, odds, async function (req: Request, res: Response) {
-
-});
+router.post('/odds', verifyToken, odds);
 
 module.exports = router;

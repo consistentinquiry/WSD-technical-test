@@ -4,10 +4,10 @@ const util = require('util');
 const jwt = require('jsonwebtoken');
 const verify = util.promisify(jwt.verify);
 
-const User = require("../models/user");
+import {User} from "../models/user";
+import {RequestUser} from "../../types/RequestUser";
 
-//TODO typescript this
-const verifyToken = async (req: Request, res: Response, next: any) => {
+export const verifyToken = async (req: RequestUser, res: Response, next: NextFunction) => {
     try {
         if (req.headers && req.headers.authorization && req.headers.authorization.split(' ')[0] === 'JWT') {
             const token = req.headers.authorization.split(' ')[1];
@@ -15,15 +15,14 @@ const verifyToken = async (req: Request, res: Response, next: any) => {
             console.log("token: ", token);
 
             if (decoded) {
-                const user = await User.findOne({ _id: decoded.id }).exec();
+                const user = (await User.findOne({_id: decoded.id}).exec()).toObject();
+
                 if (user) {
                     console.log("User in auth: ", user);
-                    //@ts-ignore
                     req.user = user;
                 }
             }
         } else {
-            //@ts-ignore
             req.user = undefined;
             return res.status(403).send({ message: "Invalid JWT token" });
         }

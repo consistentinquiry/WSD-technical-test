@@ -1,10 +1,10 @@
 import {Request, Response} from "express";
 
-var jwt = require("jsonwebtoken");
-var bcrypt = require("bcrypt");
-var User = require("../models/user");
+import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
+import {User} from "../models/user";
 
-exports.signup = async (req: Request, res: Response) => {
+export const signup = async (req: Request, res: Response) => {
     console.log("Creating user...");
     try {
         const user = new User({
@@ -52,7 +52,7 @@ exports.signup = async (req: Request, res: Response) => {
     }
 };
 
-exports.signin = async (req: Request, res: Response) => {
+export const signin = async (req: Request, res: Response) => {
     try {
         const user = await User.findOne({email: req.body.email}).exec();
 

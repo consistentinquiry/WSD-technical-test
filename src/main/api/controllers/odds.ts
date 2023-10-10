@@ -1,17 +1,17 @@
-import {Request, Response} from "express";
+import {Response} from "express";
 import {scrape} from "../../scraper/scraper";
+import {RequestUser} from "../../types/RequestUser";
 
-exports.odds = async (req: Request, res:Response) => {
-    //@ts-ignore
+
+export const odds = async (req: RequestUser, res:Response) => {
     if (!req.user) {
         res.status(403)
             .send({
                 message: "Invalid JWT token"
             });
     }
-    //@ts-ignore
-    if (req.user.userType == "premium") {
-        const {eventUrl} = req.body;
+    if (req.user.userType === "premium") {
+        const eventUrl = req.body.eventUrl;
 
         if (!eventUrl) {
             return res.status(400).send('URL is required.');
