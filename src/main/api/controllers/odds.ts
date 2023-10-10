@@ -26,7 +26,7 @@ exports.odds = async (req: Request, res:Response) => {
         })
 
         if (horses !== null) {
-            console.log("The promised bets: ", horses);
+            console.log(horses);
         }
 
         res.send(horses);
