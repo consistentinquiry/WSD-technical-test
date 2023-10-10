@@ -1,4 +1,4 @@
-import {HorseType} from "../types/HorseType";//TODO change to absolute path from src root
+import {HorseType} from "../types/HorseType";//TODO change to absolute path from main root
 
 import puppeteer from 'puppeteer-extra';
 import StealthPlugin  from 'puppeteer-extra-plugin-stealth'
